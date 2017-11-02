@@ -1,88 +1,43 @@
 package esercizi.gui.infofile;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.HeadlessException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.GridLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 
 public class InfoFile extends JFrame {
 	private static final long serialVersionUID = 4253708743409209108L;
 	
-	JPanel panel;
-	JPanel listFile;
-	JPanel infoFile;
-	String[] data;
-	JLabel info = new JLabel();
+	DefaultListModel<String> listFile = new DefaultListModel<>();
 	
-	JList<String> list;
-
-	public InfoFile() throws HeadlessException {
-		super("InfoFile");
+	public InfoFile() {
+		setLayout(new GridLayout(1,2));
+		setSize(200, 200);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		panel = new JPanel();
-		listFile = new JPanel();
-		infoFile = new JPanel();
-		BorderLayout ly = new BorderLayout();
-		panel.setLayout(ly);
-		
-		setListFile();
-		setInfoFile();
-		
-		infoFile.add(info);
-		panel.add(listFile, BorderLayout.WEST);
-		panel.add(infoFile, BorderLayout.EAST);
-		add(panel);
-		pack();
-	}
-
-	private void setListFile() {
-		data = new String[2];
-		data[0] = "Test";
-		data[1] = "Test1";
-		list = new JList<String>(data);
-		list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		JList<String> list = new JList<>(listFile);
 		list.setLayoutOrientation(JList.VERTICAL);
-		list.setVisibleRowCount(-1);
 
-		JScrollPane listScroller = new JScrollPane(list);
-		listScroller.setPreferredSize(new Dimension(250, 400));
-		this.listFile.add(listScroller);
+		listFile.addElement("TEST0");
+		listFile.addElement("TEST1");
+		listFile.addElement("TEST2");
+
+		JPanel sinistra = new JPanel();
+		JPanel destra = new JPanel();
+
+		sinistra.setLayout(new GridLayout(1,1));
+		destra.setLayout(new GridLayout(1,1));
 		
-		list.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-		        @SuppressWarnings("unchecked")
-				JList<String> list = (JList<String>)evt.getSource();
-		        int index = list.locationToIndex(evt.getPoint());
-		        System.out.println(data[index]);
-		        setInfoFile(data[index]);
-		    }
-		});
+		sinistra.add(list);
 		
+		add(sinistra);
+		add(destra);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	
-	private void setInfoFile(String info) {
-		//this.infoFile.removeAll();
-		this.info.setText(info);
-		this.infoFile.setPreferredSize(new Dimension(250, 400));
-		this.validate();
-	}
-	private void setInfoFile() {
-		this.infoFile.add(this.info);
-		setInfoFile(" ");
-	}
-
-	public static void main(String[] args) {
-		new InfoFile().setVisible(true);
+	public static void main(String args[]) {
+		(new InfoFile()).setVisible(true);
 	}
 	
 }
