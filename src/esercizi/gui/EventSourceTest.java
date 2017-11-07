@@ -20,7 +20,11 @@ public class EventSourceTest
 */
 class EventSourceFrame extends JFrame {
 
-   public static final int DEFAULT_WIDTH = 400;
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+public static final int DEFAULT_WIDTH = 400;
    public static final int DEFAULT_HEIGHT = 200;
 
    public EventSourceFrame() {
@@ -45,7 +49,11 @@ class EventSourceFrame extends JFrame {
 */
 class PaintCountPanel extends JPanel {
 
-   private int paintCount;
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+private int paintCount;
 
    public void paintComponent(Graphics g) {
       int oldPaintCount = paintCount;

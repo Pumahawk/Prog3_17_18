@@ -1,7 +1,5 @@
 package esercizi.eventi;
 
-import java.util.EventListener;
-
 import javax.swing.event.EventListenerList;
 
 public class Bifolco {
